@@ -6,3 +6,5 @@ Advent of Code 2024 Musings
 Perl.
 
 # Dec 2 - Day 2
+
+Ruby.
