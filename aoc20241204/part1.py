@@ -44,7 +44,7 @@ def rot45(matIn):
 	while i < len(matIn):
 		diag = 0
 		while i - diag >= 0 and i + diag < len(matIn[0]):
-			print("i: " + str(i) + "; diag: " + str(diag) + "; Accessing char " + matIn[i - diag][diag])
+			#print("i: " + str(i) + "; diag: " + str(diag) + "; Accessing char " + matIn[i - diag][diag])
 			matOut[i] = matOut[i] + matIn[i - diag][diag]
 			diag += 1
 		i += 1
@@ -56,7 +56,7 @@ def rot45(matIn):
 		diag = 0
 		while j + diag < len(matIn[0]) and len(matIn) - 1 - diag >= 0:
 			character = matIn[len(matIn) - 1 - diag][j + diag]
-			print("j: " + str(j) + "; diag: " + str(diag) + "; Accessing char " + character)
+			#print("j: " + str(j) + "; diag: " + str(diag) + "; Accessing char " + character)
 			matOut[len(matIn) - 1 + j] = matOut[len(matIn) - 1 + j] + character
 			diag += 1
 		j += 1
@@ -67,8 +67,24 @@ tot = 0
 a = []
 for line in fileinput.input():
 	a.append(line.rstrip())
+a = (
+'MMMSXXMASM',
+'MSAMXMSMSA',
+'AMXSXMAAMM',
+'MSAMASMSMX',
+'XMASAMXAMM',
+'XXAMMXXAMA',
+'SMSMSASXSS',
+'SAXAMASAAA',
+'MAMMMXMMMM',
+'MXMXAXMASX'
+)
+
 tot += tally(a)
-print("Straight: " + str(tot))
+tot += tally(rot45(a))
+tot += tally(rot90(a))
+tot += tally(rot45(rot90(rot90(rot90(a)))))
+print(rot45(rot90(rot90(rot90(a)))))
 
 testbed = []
 testbed = (
@@ -81,6 +97,7 @@ testbed2 = (
 	"123",
 	"ijk",
 	"xyz")
-rot90(testbed)
+#rot90(testbed)
 #print(rot90(a))
-print(rot45(testbed))
+#print(rot45(testbed))
+print("Tally: " + str(tot))
