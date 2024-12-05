@@ -1,0 +1,4 @@
+*.swp
+input.txt
+outfile.txt
+.DS_Store
