@@ -13,6 +13,10 @@ def tally(lines):
 		matches = matches + len(matcharray)
 	return matches
 
+def matdump(lines):
+	for line in lines:
+		print(line)
+
 def rot90(matIn):
 	matOut = []
 	i = 0
@@ -31,6 +35,7 @@ def rot90(matIn):
 # Rotate the puzzle space 45 degrees clockwise
 # The input must be a rectangular matrix
 def rot45(matIn):
+
 	# Initialize the array
 	matOut = []
 	i = 0
@@ -43,7 +48,7 @@ def rot45(matIn):
 	i = 0
 	while i < len(matIn):
 		diag = 0
-		while i - diag >= 0 and i + diag < len(matIn[0]):
+		while i - diag >= 0 and diag < len(matIn[0]):
 			#print("i: " + str(i) + "; diag: " + str(diag) + "; Accessing char " + matIn[i - diag][diag])
 			matOut[i] = matOut[i] + matIn[i - diag][diag]
 			diag += 1
@@ -67,24 +72,41 @@ tot = 0
 a = []
 for line in fileinput.input():
 	a.append(line.rstrip())
-a = (
-'MMMSXXMASM',
-'MSAMXMSMSA',
-'AMXSXMAAMM',
-'MSAMASMSMX',
-'XMASAMXAMM',
-'XXAMMXXAMA',
-'SMSMSASXSS',
-'SAXAMASAAA',
-'MAMMMXMMMM',
-'MXMXAXMASX'
-)
+
+#a = (
+#'MMMSXXMASM',
+#'MSAMXMSMSA',
+#'AMXSXMAAMM',
+#'MSAMASMSMX',
+#'XMASAMXAMM',
+#'XXAMMXXAMA',
+#'SMSMSASXSS',
+#'SAXAMASAAA',
+#'MAMMMXMMMM',
+#'MXMXAXMASX'
+#)
+
+print("original")
+matdump(a)
+print("rot 45")
+matdump(rot45(a))
 
 tot += tally(a)
 tot += tally(rot45(a))
 tot += tally(rot90(a))
 tot += tally(rot45(rot90(rot90(rot90(a)))))
-print(rot45(rot90(rot90(rot90(a)))))
+print("rot 0: ")
+matdump(a)
+print("rot 45: ")
+matdump(rot45(a))
+print("rot 90: ")
+matdump(rot90(a))
+print("rot 180: ")
+matdump(rot90(rot90(a)))
+print("rot 270: ")
+matdump(rot90(rot90(rot90(a))))
+print("rot 315: ")
+matdump(rot45(rot90(rot90(rot90(a)))))
 
 testbed = []
 testbed = (
@@ -97,7 +119,4 @@ testbed2 = (
 	"123",
 	"ijk",
 	"xyz")
-#rot90(testbed)
-#print(rot90(a))
-#print(rot45(testbed))
 print("Tally: " + str(tot))
