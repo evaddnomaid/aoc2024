@@ -1,3 +1,3 @@
-outfile.txt: part1.py input.txt
-	./part1.py < input.txt
-	./part1.py < input.txt > outfile.txt
+outfile.txt: part2.py input.txt
+	./part2.py < input.txt
+	./part2.py < input.txt > outfile.txt
