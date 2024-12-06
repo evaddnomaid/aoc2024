@@ -8,3 +8,11 @@ Perl.
 # Dec 2 - Day 2
 
 Ruby.
+
+# Dec 3 - Day 3
+
+Perl.
+
+# Dec 4 - Day 4
+
+Python.
