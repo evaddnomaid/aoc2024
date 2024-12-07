@@ -11,7 +11,7 @@ Ruby.
 
 # Dec 3 - Day 3
 
-Perl.
+~~Perl~~ sed and AWK.
 
 # Dec 4 - Day 4
 

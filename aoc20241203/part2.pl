@@ -14,5 +14,5 @@ while (m/mul\(([0-9]{1,3}),([0-9]{1,3})\)|(do)\(\)|(don)\'t\(\)/g) {
 }
 
 END {
-	print "TOTAL: " . $tot . "; TOTAL CONDITIONAL: " . $condtot . "\n";
+	print "Part 1: " . $tot . "; Part 2: " . $condtot . "\n";
 }
