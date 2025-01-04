@@ -7,9 +7,87 @@ import (
 	"regexp"
 	"strings"
 	"strconv"
+	"errors"
+	//"sort"
 )
 
+// TODO: use https://pkg.go.dev/slices#SortFunc ?
+
+// Return the first element from a list of 2 or more
+// 2-element orderings
+func find_first(ordering [][2]int) (int, error) {
+	if len(ordering) == 0 {
+		return 0, errors.New("Empty ordering list")
+	}
+	if len(ordering) == 1 {
+		return 0, errors.New("Only one ordering item")
+	}
+	candidate := ordering[0][0]
+	i := 0
+	for i < len(ordering) {
+		if ordering[i][1] == candidate {
+			candidate = ordering[i][0]
+			i = 0
+		} else {
+			i += 1
+		}
+	}
+	return candidate, nil
+}
+
+func print_array(array []int) {
+	println("Array len: ", len(array))
+	for i := 0; i < len(array); i++ {
+		fmt.Printf("%d ", array[i])
+	}
+	println("<thatsall")
+}
+
+type Person struct {
+	name string
+	height int
+}
+
+func tallest_person(people []Person) Person {
+	return people[0]
+}
+
 func main() {
+	a_person_slice := []Person{{"Bill", 190},{"Sally", 283}}
+	println(tallest_person(a_person_slice).name)
+	println()
+	os.Exit(0)
+	ordering_sample := [][2]int{
+		{47, 53},
+		{97, 47},
+		{53, 18} }
+	sorted := []int{}
+	var first int
+	var tempholder [2]int
+	ordering := [][2]int{}
+	ordering = ordering_sample
+	for len(ordering) > 1 {
+		first, _ = find_first(ordering)
+		print_array(sorted)
+		sorted = append(sorted, first)
+		// remove ordering list items mentioning the first element
+		newordering := [][2]int{}
+		for i := 0; i < len(ordering); i++ {
+			if ordering[i][0] != first {
+				tempholder[0] = ordering[i][0]
+				tempholder[1] = ordering[i][1]
+				newordering = append(newordering, tempholder)
+			}
+		}
+		ordering = newordering
+		first, _ = find_first(ordering)
+	}
+	sorted = append(sorted, ordering[0][1])
+	print_array(sorted)
+	sorted = append(sorted, ordering[0][0])
+	print_array(sorted)
+	os.Exit(0)
+
 	fmt.Println("Hello, world! =====================================================")
 	var pageOrderingRulesSearch = regexp.MustCompile(`^([0-9]+)\|([0-9]+)$`)
 	pageOrderingRegexList := []*regexp.Regexp{}
