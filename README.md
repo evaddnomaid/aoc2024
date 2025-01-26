@@ -16,3 +16,11 @@ Ruby.
 # Dec 4 - Day 4
 
 Python.
+
+# Dec 5 - Day 5
+
+Go.
+
+# Dec 11 - Day 11
+
+~~Perl~~ Swift.
